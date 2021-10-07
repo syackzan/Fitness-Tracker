@@ -15,10 +15,24 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 //ROUTES BELOW//
 
+//Get Array of Workouts//
+app.get('/api/workouts', (req,res) => {
+    console.log("hit");
+    db.Workout.find({})
+    .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+})
+
+
+//Port
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
   });
