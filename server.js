@@ -20,10 +20,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
 //ROUTES BELOW//
 
 //Get Array of Workouts//
-app.get('/api/workouts', (req,res) => {
-    console.log("hit");
+app.get('/api/workouts', (req, res) => {
+    
     db.Workout.find({})
     .then(dbWorkout => {
+      console.log(dbWorkout);
         res.json(dbWorkout);
       })
       .catch(err => {
