@@ -32,6 +32,34 @@ app.get('/api/workouts', (req, res) => {
       });
 })
 
+//Get Single Workout//
+app.get('/exercise', (req, res) => {
+  console.log(req.body);
+  db.Workout
+  .find({
+    where: {_id: req.params.id}
+  })
+  .then(dbWorkouts => {
+    res.json(dbWorkouts);
+  })
+  .catch(err => {
+    res.json(err);
+  })  
+});
+
+//Post an additional Workout//
+app.post('/api/workouts/:id', (req, res) => {
+  console.log(req.body);
+  db.Workout
+  .where({_id: req.params.id})
+  .update({ $set:  req.body })
+  .then(dbWorkouts => {
+    res.json(dbWorkouts);
+  })
+  .catch(err => {
+    res.json(err);
+  })  
+});
 
 //Port
 app.listen(PORT, () => {
