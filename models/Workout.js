@@ -7,47 +7,35 @@ const WorkoutSchema = new Schema({
         type: Date,
     },
     exercises: [ 
-        
-        {
+            {
+                
             type: {
                 type: String,
                 trim: true,
                 required: "Cardio or Resistance Needs to be selected"
             },
-        },
 
-        {
             name: {
                 type: String,
-                required: "A Workout needs to be selected"
+                trim: true
             },
-        },
         
-        {
             duration: {
                 type: Number, 
             },
-        },
-    
-        {    
+      
             weight: {
                 type: Number,
             },
-        },
-    
-        {    
+      
             reps: {
                 type: Number,
             },
-        },
         
-        {
             sets: {
                 type: Number,
             },
-        },
         
-        {
             distance: {
                 type: Number,
             }
