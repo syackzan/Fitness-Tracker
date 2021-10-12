@@ -54,8 +54,7 @@ app.get('/api/workouts', (req, res) => {
 
 //Get Single Workout//
 app.get('/api/workouts/:id', (req, res) => {
-  db.Workout
-  .findById(req.params.id)
+  db.Workout.findById(req.params.id)
   .then(dbWorkouts => {
     res.json(dbWorkouts);
   })
@@ -90,6 +89,26 @@ app.post('/api/workouts', (req, res) => {
     res.json(err);
   })
 })
+
+//Get Array of Workouts//
+app.get('/api/workouts/range', (req, res) => {
+    
+  db.Workout.aggregate( [
+    {
+      $addFields: {
+       totalDuration: { $sum: "exercises.duration" }
+      }
+    }
+  ] )
+  .then(dbWorkout => {
+    console.log(dbWorkout);
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+})
+
 
 //Port
 app.listen(PORT, () => {
