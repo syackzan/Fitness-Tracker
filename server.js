@@ -81,6 +81,7 @@ app.put('/api/workouts/:id', (req, res) => {
 
 //Create a Completely new Workout
 app.post('/api/workouts', (req, res) => {
+  console.log(req.body)
   db.Workout.create(req.body)
   .then (dbWorkouts => {
     res.json(dbWorkouts);
