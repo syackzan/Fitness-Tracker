@@ -69,17 +69,6 @@ app.get('/api/workouts/range', (req, res) => {
     });
 });
 
-//Get Single Workout//
-app.get('/api/workouts/:id', (req, res) => {
-  db.Workout.findById(req.params.id)
-  .then(dbWorkouts => {
-    res.json(dbWorkouts);
-  })
-  .catch(err => {
-    res.json(err);
-  })  
-});
-
 
 //Post an additional Workout//
 app.put('/api/workouts/:id', (req, res) => {
