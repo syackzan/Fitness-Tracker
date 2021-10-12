@@ -16,6 +16,7 @@ function calculateTotalWeight(data) {
 }
 
 function populateChart(data) {
+  console.log(data);
   const durations = data.map(({ totalDuration }) => totalDuration);
   const pounds = calculateTotalWeight(data);
 
@@ -24,7 +25,7 @@ function populateChart(data) {
 
   const labels = data.map(({ day }) => {
     const date = new Date(day);
-
+    console.log(date);
     // Use JavaScript's `Intl` object to help format dates
     return new Intl.DateTimeFormat('en-US', {
       weekday: 'short',
